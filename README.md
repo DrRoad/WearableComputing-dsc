@@ -24,12 +24,11 @@ The course project consists in creating one R script "run_analysis.R" that:
 
 As explained in [1], the data can be downloaded in a .zip file. Once extracted, the data is split in two data sets "train" and "test". Each of these data sets is comprised, equivalently for "train" and "test", of one folder "Inertial Signals" (with nine files: (x,y,z)-gyroscope data, (x,y,z)-accelerometer data, and (x,y,z)-total accelerometer data), and three files (X data; y data; and Subject data). Concretely, the files for the "train" data set are:
 
-
 <ul>
 <li> X_train.txt: Training set. Domain: Float numbers. 
 </li>
 <li> y_train.txt: Training labels. Domain: Integer numbers 1 to 6, with
-  <ol>
+  <ul>
 	<li> 	1 WALKING
 	</li>
 	<li>	2 WALKING_UPSTAIRS
@@ -42,11 +41,11 @@ As explained in [1], the data can be downloaded in a .zip file. Once extracted, 
 	</li>
 	<li>	6 LAYING. 
 	</li>
-  </ol>
+  </ul>
 </li>
 <li> subject_train.txt: Subject data, each row identifying the subject who performed the activity for each window sample. Domain: Integers 1 to 30. 
 </li>
-<li> Folder "Inertial Signals" with (x,y,z)-gyroscope angular velocity data, (x,y,z)-estimated body acceleration data, and (x,y,z)-total acceleration data from the accelerometer:
+<li> Folder "Inertial Signals" with (x,y,z)-gyroscope angular velocity data, (x,y,z)-total acceleration data from the accelerometer, (x,y,z)-estimated body acceleration data:
   <ol>
 	<li>	body_gyro_x_train.txt: The angular velocity vector for the X axis measured by the gyroscope for each window sample. The units are radians/second. Domain: Float numbers.
 	</li>
@@ -71,6 +70,7 @@ As explained in [1], the data can be downloaded in a .zip file. Once extracted, 
 </ul>
 
 The equivalent files are available for the test data. 
+
 
 
 <h5>References</h5>
