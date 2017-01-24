@@ -71,7 +71,7 @@ As explained in [1], the data can be downloaded in a .zip file. Once extracted, 
 
 The equivalent files are available for the "test" data. 
 
-
+It is worth noting that the instructions for the task makes reference to these 12 files as one "data set". Thus, to build one data set, it is necessary to combine these two sets of files. This operation can be performed by using the rbind(f1,f2) function, which concatenates the contents of f2 after the contents of f1, on each of the 12 files.
 
 <h5>References</h5>
 
