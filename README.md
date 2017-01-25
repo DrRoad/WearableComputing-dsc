@@ -111,15 +111,23 @@ activities <- mutate(mergeddataY, activity = activityDesc[mergeddataY$V1])
 The data set, for now, comprises the following data frames:
 
 <ol>
-	<li> dataMeansStds: the measurements on means and standard deviations
-	<li> activities: the id of the activities to which correspond the experiment
+	<li> features: the feature names</li>
+	<li> activities: the id of the activities to which correspond the experiment</li>
+	<li> mergeddataX: the measurements taken on the experiments</li>
+	<li> dataMeansStds: the measurements on means and standard deviations</li>
 </ol>
 
 <pre><code>
-colnames(mergeddataX) <- c("good", "better")
-colnames(activities) <- c("Activity", "ActivityName")
-</code></pre>
 
+colnames(features) <- c("id", "FeatureName")
+colnames(activities) <- c("Activity", "ActivityName")
+colnames(mergeddataX) <- features[,2]
+
+# Recall from Task 2 that iFeaturesMeanStd contains the indexes of the columns that correspond to the measurements on means and standard deviations
+# Thus, we obtain the labels of these features by subsetting the correspondig rows from the features data frame:
+columnLabels <- features[iFeaturesMeanStd,2]
+colnames(dataMeansStds) <- columnLabels
+</code></pre>
 
 
 <h5>References</h5>
