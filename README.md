@@ -73,6 +73,40 @@ The equivalent files are available for the "test" data.
 
 It is worth noting that the instructions for the task makes reference to these 12 files as one "data set". Thus, to build one data set, it is necessary to combine these two sets of files. This operation can be performed by using the rbind(f1,f2) function, which concatenates the contents of f2 after the contents of f1, on each of the 12 files.
 
+
+
+
+<!-- =================================================================== -->
+<h4>Task 2. Extracts only the measurements on the mean and standard deviation for each measurement.</h4>
+
+<pre><code>
+features <- read.table("./features.txt")
+
+# Measurements on the mean and standard deviation are those with "mean()" or "std()" in the feature names.
+iFeaturesMeanStd <- grep("mean[(][)]|std[(][)]", features$V2, ignore.case = TRUE, value = FALSE)
+
+# grep returns the indexes of the found values, so we need all rows from the data set (mergeddata) for the columns that correspond to these indexes: 
+dataMeansStds <- mergeddataX[,iFeaturesMeanStd]
+</code></pre>
+
+
+<!-- =================================================================== -->
+<h4>Task 3. Uses descriptive activity names to name the activities in the data set.</h4>
+
+<pre><code>
+library(dplyr)
+activityDesc <- c("WALKING",
+                  "WALKING_UPSTAIRS",
+                  "WALKING_DOWNSTAIRS",
+                  "SITTING",
+                  "STANDING",
+                  "LAYING")
+activities <- mutate(mergeddataY, activity = activityDesc[mergeddataY$V1])
+</code></pre>
+
+
+
+
 <h5>References</h5>
 
 <ol>
