@@ -105,6 +105,21 @@ activities <- mutate(mergeddataY, activity = activityDesc[mergeddataY$V1])
 </code></pre>
 
 
+<!-- =================================================================== -->
+<h4>Task 4. Appropriately labels the data set with descriptive variable names.</h4>
+
+The data set, for now, comprises the following data frames:
+
+<ol>
+	<li> dataMeansStds: the measurements on means and standard deviations
+	<li> activities: the id of the activities to which correspond the experiment
+</ol>
+
+<pre><code>
+colnames(mergeddataX) <- c("good", "better")
+colnames(activities) <- c("Activity", "ActivityName")
+</code></pre>
+
 
 
 <h5>References</h5>
