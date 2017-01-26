@@ -260,7 +260,11 @@ bySubjectActivity <- group_by(finaldata, SubjectId, ActivityId, ActivityName)
 meansBySA <- summarise_each(bySubjectActivity, funs(mean))
 </code></pre>
 
+Finally, the resulting data set is written to a file with:
 
+<pre><code>
+write.table(meansBySA,"./merged/meansBySA.txt", row.names = FALSE, col.names = TRUE)
+</code></pre>
 
 <!-- =================================================================== -->
 References
