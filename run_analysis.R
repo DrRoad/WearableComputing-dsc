@@ -1,3 +1,6 @@
+# This code, run_analysis.R, must be located in the same directory in which the Samsung data is (i.e., UCI HAR Dataset).
+setwd("./UCI HAR Dataset")
+
 ########################################
 # Task 1
 
