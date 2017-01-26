@@ -204,7 +204,9 @@ The data set, for now, comprises the following main data frames:
 	<li> dataMeansStds: the measurements on means and standard deviations</li>
 </ol>
 
-To appropriately label each of these data frames, use the following code:
+Given that I am not a mechanical engineer, and that I find the names in the "features.txt" files descriptive enough for the columns of the data set, I will use them as descriptive variable names.
+Thus, to label each of these data frames, I use the following code:
+
 <pre><code>
 # Use the colnames function to specify the column names of a data frame:
 colnames(features) <- c("id", "FeatureName")	# label the columns of features
