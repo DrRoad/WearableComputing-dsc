@@ -204,7 +204,8 @@ The data set, for now, comprises the following main data frames:
 	<li> dataMeansStds: the measurements on means and standard deviations</li>
 </ol>
 
-Given that I am not a mechanical engineer, and that I find the names in the "features.txt" files descriptive enough for the columns of the data set, I will use them as descriptive variable names.
+Given that I am not a mechanical engineer, and that I find the names in the "features.txt" files descriptive enough for the columns of the data set, I will use them as descriptive variable names for the experiments data frame. For the others, I'll define them appropriately.
+
 Thus, to label each of these data frames, I use the following code:
 
 <pre><code>
