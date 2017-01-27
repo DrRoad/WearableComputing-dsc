@@ -3,7 +3,7 @@
 
 In this course project, several tasks must be performed on data resulted from experiments published and described in [1]. In short, 30 volunteers (19-48 years old) performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone. Data was captured from the smartphone's accelerometer and gyroscope at a constant rate of 50Hz, and labeled manually. Finally, 70% of the volunteers' data was randomly selected as "training" data, and the remaining 30% as "test" data.
 
-The course project consists in creating one R script "run_analysis.R" that:
+The course project consists in creating one R script "run_analysis.R" (also in the github repository) that:
 
 <ol>
 <li> Merges the training and the test sets to create one data set.
