@@ -1,6 +1,12 @@
 # This code, run_analysis.R, must be located in the same directory in which the Samsung data is (i.e., UCI HAR Dataset).
 setwd("./UCI HAR Dataset")
 
+# Create a folder "merged" and "merged/Inertial  Signals" if not existent
+if (!dir.exists("./merged")) {
+  dir.create(file.path(".", "merged"),showWarnings = TRUE)
+  dir.create(file.path("./merged","Inertial\ Signals"))
+}
+
 ########################################
 # Task 1
 
@@ -164,4 +170,5 @@ meansBySA <- summarise_each(bySubjectActivity, funs(mean))
 
 ########################################
 # Finally, save the tidy data set
-write.table(meansBySA,"./merged/meansBySA.txt", row.names = FALSE, col.names = TRUE)
+# The data set is written in the same directory in which this script is located
+write.table(meansBySA,"../meansBySA.txt", row.names = FALSE, col.names = TRUE)
