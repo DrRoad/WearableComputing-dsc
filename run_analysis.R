@@ -1,10 +1,10 @@
-# This code, run_analysis.R, must be located in the same directory in which the Samsung data is (i.e., UCI HAR Dataset).
+# This code, run_analysis.R, must be located in the same directory in which the Samsung data is (i.e., UCI HAR Dataset). As instructed, the UCI HAR Dataset is assumed already downloaded.
+
 setwd("./UCI HAR Dataset")
 
 # Create a folder "merged" and "merged/Inertial  Signals" if not existent
 if (!dir.exists("./merged")) {
   dir.create(file.path(".", "merged"),showWarnings = TRUE)
-  dir.create(file.path("./merged","Inertial\ Signals"))
 }
 
 ########################################
@@ -31,61 +31,6 @@ datafile2 <- read.table("./test/subject_test.txt")
 mergeddata <- rbind(datafile1,datafile2)
 write.table(mergeddata,"./merged/subject_merged.txt", row.names = FALSE, col.names = FALSE)
 
-# Merge body_gyro_x_
-datafile1 <- read.table("./train/Inertial\ Signals/body_gyro_x_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_gyro_x_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_gyro_x_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_gyro_y_
-datafile1 <- read.table("./train/Inertial\ Signals/body_gyro_y_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_gyro_y_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_gyro_y_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_gyro_z_
-datafile1 <- read.table("./train/Inertial\ Signals/body_gyro_z_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_gyro_z_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_gyro_z_merged.txt", row.names = FALSE, col.names = FALSE)
-
-#####################
-# Merge total_acc_x_
-datafile1 <- read.table("./train/Inertial\ Signals/total_acc_x_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/total_acc_x_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/total_acc_x_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge total_acc_y_
-datafile1 <- read.table("./train/Inertial\ Signals/total_acc_y_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/total_acc_y_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/total_acc_y_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge total_acc_z_
-datafile1 <- read.table("./train/Inertial\ Signals/total_acc_z_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/total_acc_z_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/total_acc_z_merged.txt", row.names = FALSE, col.names = FALSE)
-
-#####################
-# Merge body_acc_x_
-datafile1 <- read.table("./train/Inertial\ Signals/body_acc_x_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_acc_x_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_acc_x_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_acc_y_
-datafile1 <- read.table("./train/Inertial\ Signals/body_acc_y_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_acc_y_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_acc_y_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_acc_z_
-datafile1 <- read.table("./train/Inertial\ Signals/body_acc_z_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_acc_z_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_acc_z_merged.txt", row.names = FALSE, col.names = FALSE)
 
 
 ########################################
@@ -125,6 +70,8 @@ activities <- mutate(mergeddataY, activity = activityDesc[mergeddataY$V1])
 # Use the colnames function to specify the column names of a data frame:
 colnames(features) <- c("id", "FeatureName")	# label the columns of features
 colnames(activities) <- c("ActivityId", "ActivityName")	# label the columns of activities
+# ActivityId, even though not strictly needed, I decided to keep it, as it can ease 
+# ulterior analysis
 
 subjects <- read.table("./merged/subject_merged.txt")	# load the subject (volunteer) ids
 colnames(subjects) <- c("SubjectId")			# label the columns of subjects
@@ -163,6 +110,7 @@ finaldata <- merge(finaldata, dataMeansStds, sort=FALSE)	# Then, measurements
 finaldata$id <- NULL
 
 # d. Average the 66 variables grouping by subject and activity
+#    the resulting columns are all averages
 bySubjectActivity <- group_by(finaldata, SubjectId, ActivityId, ActivityName)
 meansBySA <- summarise_each(bySubjectActivity, funs(mean))
 
