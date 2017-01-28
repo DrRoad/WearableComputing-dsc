@@ -19,13 +19,14 @@ The course project consists in creating one R script "run_analysis.R" (also in t
 </ol>
 
 
+<!-- =================================================================== -->
 <h4>Task 1. Merge the training and the test sets to create one data set.
 </h4>
 
 As explained in [1], the data can be downloaded in a .zip file. Once extracted, the data is presented in two data sets "train" and "test". Each of these data sets is comprised, equivalently for "train" and "test", of one folder "Inertial Signals" (with nine files: (x,y,z)-gyroscope data, (x,y,z)-accelerometer data, and (x,y,z)-total accelerometer data), and three files (X data; y data; and Subject data). Concretely, the files for the "train" data set are:
 
 <ul>
-<li> X_train.txt: Training set. Domain: Float numbers. 
+<li> X_train.txt: Training set. 561-feature vector with time and frequency domain variables. Domain: Float numbers. 
 </li>
 <li> y_train.txt: Training labels. Domain: Integer numbers 1 to 6, with
   <ul>
@@ -45,7 +46,7 @@ As explained in [1], the data can be downloaded in a .zip file. Once extracted, 
 </li>
 <li> subject_train.txt: Subject data, each row identifying the subject who performed the activity for each window sample. Domain: Integers 1 to 30. 
 </li>
-<li> Folder "Inertial Signals" with (x,y,z)-gyroscope angular velocity data, (x,y,z)-total acceleration data from the accelerometer, (x,y,z)-estimated body acceleration data:
+<li> Folder "Inertial Signals" with (x,y,z)-gyroscope angular velocity data, (x,y,z)-total acceleration data from the accelerometer, (x,y,z)-estimated body acceleration data, in 128 element vector per row:
   <ol>
 	<li>	body_gyro_x_train.txt: The angular velocity vector for the X axis measured by the gyroscope for each window sample. The units are radians/second. Domain: Float numbers.
 	</li>
@@ -69,9 +70,10 @@ As explained in [1], the data can be downloaded in a .zip file. Once extracted, 
 </li>
 </ul>
 
-The equivalent files are available for the "test" data. 
+The equivalent files are available for the "test" data set. 
 
 It is worth noting that the task instructions makes reference to these 12 files as one "data set". Thus, to build one data set, it is necessary to combine the two sets of files, "train" and "test". This operation can be performed using the rbind(f1,f2) function, which concatenates the contents of f2 after the contents of f1 and then writing the resulting data frame, on each of the 12 files.
+However, the last 9 files (inertial signals) are not required for the final tidy dataset.
 
 
 <pre><code>
@@ -96,62 +98,6 @@ datafile2 <- read.table("./test/subject_test.txt")
 mergeddata <- rbind(datafile1,datafile2)
 write.table(mergeddata,"./merged/subject_merged.txt", row.names = FALSE, col.names = FALSE)
 
-# Merge body_gyro_x_
-datafile1 <- read.table("./train/Inertial\ Signals/body_gyro_x_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_gyro_x_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_gyro_x_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_gyro_y_
-datafile1 <- read.table("./train/Inertial\ Signals/body_gyro_y_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_gyro_y_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_gyro_y_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_gyro_z_
-datafile1 <- read.table("./train/Inertial\ Signals/body_gyro_z_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_gyro_z_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_gyro_z_merged.txt", row.names = FALSE, col.names = FALSE)
-
-#####################
-# Merge total_acc_x_
-datafile1 <- read.table("./train/Inertial\ Signals/total_acc_x_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/total_acc_x_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/total_acc_x_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge total_acc_y_
-datafile1 <- read.table("./train/Inertial\ Signals/total_acc_y_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/total_acc_y_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/total_acc_y_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge total_acc_z_
-datafile1 <- read.table("./train/Inertial\ Signals/total_acc_z_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/total_acc_z_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/total_acc_z_merged.txt", row.names = FALSE, col.names = FALSE)
-
-#####################
-# Merge body_acc_x_
-datafile1 <- read.table("./train/Inertial\ Signals/body_acc_x_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_acc_x_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_acc_x_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_acc_y_
-datafile1 <- read.table("./train/Inertial\ Signals/body_acc_y_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_acc_y_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_acc_y_merged.txt", row.names = FALSE, col.names = FALSE)
-
-# Merge body_acc_z_
-datafile1 <- read.table("./train/Inertial\ Signals/body_acc_z_train.txt")
-datafile2 <- read.table("./test/Inertial\ Signals/body_acc_z_test.txt")
-mergeddata <- rbind(datafile1,datafile2)
-write.table(mergeddata,"./merged/Inertial\ Signals/body_acc_z_merged.txt", row.names = FALSE, col.names = FALSE)
-</code></pre>
 
 
 <!-- =================================================================== -->
@@ -207,11 +153,12 @@ The data set, for now, comprises the following main data frames:
 Given that I am not a mechanical engineer, and that I find the names in the "features.txt" files descriptive enough for the columns of the data set, I will use them as descriptive variable names for the experiments data frame. For the others, I'll define them appropriately.
 
 Thus, to label each of these data frames, I use the following code:
-
 <pre><code>
 # Use the colnames function to specify the column names of a data frame:
 colnames(features) <- c("id", "FeatureName")	# label the columns of features
 colnames(activities) <- c("ActivityId", "ActivityName")	# label the columns of activities
+# ActivityId, even though not strictly needed, I decided to keep it, as it can ease
+# ulterior analysis
 
 subjects <- read.table("./merged/subject_merged.txt")	# load the subject (volunteer) ids
 colnames(subjects) <- c("SubjectId")			# label the columns of subjects
@@ -259,15 +206,18 @@ finaldata <- merge(finaldata, dataMeansStds, sort=FALSE)	# Then, measurements
 finaldata$id <- NULL
 
 # d. Average the 66 variables grouping by subject and activity
+#    the resulting columns are all averages
 bySubjectActivity <- group_by(finaldata, SubjectId, ActivityId, ActivityName)
 meansBySA <- summarise_each(bySubjectActivity, funs(mean))
 </code></pre>
+
 
 Finally, the resulting data set is written to a file with:
 
 <pre><code>
 write.table(meansBySA,"./merged/meansBySA.txt", row.names = FALSE, col.names = TRUE)
 </code></pre>
+
 
 <!-- =================================================================== -->
 References
